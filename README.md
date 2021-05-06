@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Simple-http-server
 
 This Program upon built with mavn creates a jar file. This jar along with supported-libs can be deployed as individual HTTP Web Server that supports GET request..
@@ -97,3 +98,16 @@ make various requests for different codes
   | localhost:6789/temp.txt                                                        |         404        |                 |   
   | localhost:6789/test_perm.txt                                                   |         403        |                 |  
   | POST localhost:6789/index.html                                                 |         405        |                 | 
+=======
+# Multithreaded-Web-Server
+
+This Program is built with maven. creates a jar file. This jar along with supported-libs can be deployed as individual HTTP Web Server that supports GET request..
+
+I have used approach of MultiThreading. For every incoming request to the server, a new thread is being created. This Program meets all the requirements specified in required assignment document. Web Server is able to
+
+Send 200 if requested resource is present under document_root and has proper permission for other users
+Send 400 if requested resources if directory instead of file.
+Send 403 if requested resources is file and present under document_root but permissions for "OTHER" users is not "READ"
+Send 404 if requested resource(file/directory) is not found under document_root
+Send 405 if any other method other than GET is used
+>>>>>>> 11764b75ed22790f4cf9770263cecf9b6ed7acdc
