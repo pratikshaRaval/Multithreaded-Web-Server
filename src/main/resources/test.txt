@@ -1,0 +1,1 @@
+This is sample text file to demonstrate that web server is able to serve TXT file with proper Content type.

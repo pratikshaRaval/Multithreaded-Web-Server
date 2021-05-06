@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.distributed</groupId>
+	<artifactId>java-web-server</artifactId>
+	<version>1.0</version>
+	<name>java-web-server</name>
+	<description>Demo project for Web Server in JAVA supporting Multi threading. Assignment 1 </description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+
+
+		<project.deployment.folder.name>java-web-server-deployment</project.deployment.folder.name>
+		<project.deployment.folder.dependeciesfolder.name>supported-libs</project.deployment.folder.dependeciesfolder.name>
+		<project.deployment.folder.resourcesfolder.name>base_directory</project.deployment.folder.resourcesfolder.name>
+		<project.resources.build.folder>${project.build.directory}/${project.deployment.folder.name}/${project.deployment.folder.resourcesfolder.name}/</project.resources.build.folder>
+		<project.dependencies.build.folder>${project.build.directory}/${project.deployment.folder.name}/${project.deployment.folder.dependeciesfolder.name}/</project.dependencies.build.folder>
+		<project.deplyoment.jar.name>${project.artifactId}</project.deplyoment.jar.name>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<!--<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>-->
+
+
+	<build>
+		<finalName>${project.deplyoment.jar.name}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}/${project.deployment.folder.name}</outputDirectory>
+					<excludes>
+						<exclude>**/*.properties</exclude>
+						<exclude>**/*.txt</exclude>
+					</excludes>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>${project.deployment.folder.dependeciesfolder.name}/</classpathPrefix>
+							<mainClass>com.distributed.javawebserver.JavaWebServerApplication</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>${project.deployment.folder.resourcesfolder.name}</Class-Path>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.dependencies.build.folder}</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.resources.build.folder}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<includes>
+										<include>**/*.html</include>
+										<include>**/*.txt</include>
+										<include>**/*.jpg</include>
+										<include>**/*.gif</include>
+										<include>**/*.png</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
