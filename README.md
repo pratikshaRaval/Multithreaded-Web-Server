@@ -26,8 +26,6 @@ This Program is built with maven. creates a jar file. This jar along with suppor
     [INFO] Total time:  11.666 s
     [INFO] Finished at: 2020-04-28T20:53:38-07:00
     [INFO] ------------------------------------------------------------------------
-    
-    ```
 
 3. Move to the target/java-web-server-deployment.
 
@@ -63,8 +61,8 @@ make various requests for different codes
 
 I have used approach of MultiThreading. For every incoming request to the server, a new thread is being created. This Program meets all the requirements specified in required assignment document. Web Server is able to
 
-Send 200 if requested resource is present under document_root and has proper permission for other users
-Send 400 if requested resources if directory instead of file.
-Send 403 if requested resources is file and present under document_root but permissions for "OTHER" users is not "READ"
-Send 404 if requested resource(file/directory) is not found under document_root
-Send 405 if any other method other than GET is used
+1. Send 200 if requested resource is present under document_root and has proper permission for other users
+2. Send 400 if requested resources if directory instead of file.
+3. Send 403 if requested resources is file and present under document_root but permissions for "OTHER" users is not "READ"
+4. Send 404 if requested resource(file/directory) is not found under document_root
+5. Send 405 if any other method other than GET is used
